@@ -1,0 +1,114 @@
+
+//    File:   BinCon.hla
+program BinCon;
+#include( "stdlib.hhf" );
+static
+   iNumberData : int8;   
+   begin BinCon;
+   //start with title of the table
+   stdout.put( "Decimal Number Conversion" , nl );  
+   // statement to enter a 8bit decimal to be converted  
+   stdout.put( " Enter a starting decimal number you want converted : "  , nl);
+   stdin.get(iNumberData);   
+   //move the iNumberData value into a 8bit register   
+   mov(iNumberData , AH );
+   stdout.put("The number :, iNumberData , "the binary is %", AH, nl);
+   end binaryConvert;
+   
+   stdout.puti8( BH );
+stdout.put( " in binary is: %" );
+
+    shl(1, BH); 
+    lahf();
+    //load AH with Flags
+    and( %0000_0001, AH );
+    //passing an arugement to AH[0]
+    stdout.puti8( AH ); 
+    //without i8, it outpouts 2 digits
+	
+	shl(1, BH); //1st
+lahf();
+and( %0000_0001, AH );
+stdout.putb(AH);
+
+begin program BinaryOutput;
+ #include( "stdlib.hhf" );
+ static
+   iDataValue : int8;  // the value to inspect
+ begin BinaryOutput;
+
+    stdout.put( "Gimme a decimal value to print: ", nl);
+    stdin.get( iDataValue );
+    mov(0, BH);
+    mov( iDataValue, BH);
+
+    stdout.put("Number in binary is: ", nl);
+
+
+    shl(1, BH); //1st
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //2nd
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //3rd
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //4th
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //5th
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //6th
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //7th
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+    shl(1, BH); //8th
+    lahf();
+    and( %0000_0001, AH );
+    mov(AH, BH);
+    stdout.putb(BH);
+
+
+
+
+//    File:   binaryConvert.hla
+program binaryConvert;
+#include( "stdlib.hhf" );
+static
+   iNumberData : int8;   
+   begin binaryConvert;
+   //start with title of the table
+   stdout.put( "Decimal Number Conversion" , nl );  
+   // statement to enter a 8bit decimal to be converted  
+   stdout.put( " Enter a starting decimal number you want converted : "  , nl);
+   stdin.get(iNumberData);   
+   //move the iNumberData value into a 8bit register   
+   mov(iNumberData , AH );
+   stdout.put("The number :, iNumberData , "the binary is %", AH, nl);
+   end binaryConvert;
+ end BinaryOutput;
